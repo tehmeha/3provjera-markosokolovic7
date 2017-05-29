@@ -1,9 +1,11 @@
 #include<iostream>
 #include<fstream>
+#include<algorithm>
 using namespace std;
 
 int main()
 {
+    int i=0;
     int brojOsoba = 0;
     int izbor;
     int MAX = 50;
@@ -12,6 +14,10 @@ int main()
     unsigned long long brTelefona[MAX];
     ofstream datotekaUpisivanje;
     ifstream datotekaUcitavanje;
+    datotekaUcitavanje.open("imenik.txt");
+    datotekaUcitavanje >> prezimeIme[i];
+    datotekaUcitavanje >> brTelefona[i];
+    datotekaUcitavanje >> adresa[i];
 
     while(1)
     {
@@ -35,6 +41,11 @@ int main()
             cout<<"Unesite adresu: ";
             cin.ignore();
             getline(cin,adresa[brojOsoba]);
+             datotekaUpisivanje.open("imenik.txt", ios::app);
+             datotekaUpisivanje<<prezimeIme[brojOsoba]<<endl;
+            datotekaUpisivanje<<brTelefona[brojOsoba]<<endl;
+            datotekaUpisivanje<<adresa[brojOsoba]<<endl;
+            datotekaUpisivanje.close();
             brojOsoba++;
         }
         else if( izbor == 2 )
@@ -44,6 +55,7 @@ int main()
             {
                 cout << prezimeIme[i] <<"\t"<<brTelefona[i]<<"\t"<<adresa[i]<<endl;
             }
+
         }
         else if( izbor == 3 )
         {
@@ -88,10 +100,15 @@ int main()
         }
         else if( izbor == 5 )
         {
-
         }
         else if( izbor == 6 )
         {
+            sort (prezimeIme,prezimeIme+brojOsoba);
+            cout << "prezime i ime" << "\t" << "broj telefona" << "\t" << "adresa" << endl;
+            for( int i = 0; i < brojOsoba; i++ )
+            {
+                cout << prezimeIme[i] <<"\t"<<brTelefona[i]<<"\t"<<adresa[i]<<endl;
+            }
         }
         else if( izbor == 7 )
         {
