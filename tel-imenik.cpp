@@ -8,6 +8,8 @@ int main()
     int izbor;
     int MAX = 50;
     string prezimeIme[MAX];
+    string adresa[MAX];
+    unsigned long long brTelefona[MAX];
     ofstream datotekaUpisivanje;
     ifstream datotekaUcitavanje;
 
@@ -28,6 +30,11 @@ int main()
             cout << "Unesite ime i prezime: ";
             cin.ignore();
             getline(cin, prezimeIme[brojOsoba]);
+            cout<<"Unesite broj telefona: ";
+            cin>>brTelefona[brojOsoba];
+            cout<<"Unesite adresu: ";
+            cin.ignore();
+            getline(cin,adresa[brojOsoba]);
             brojOsoba++;
         }
         else if( izbor == 2 )
@@ -35,17 +42,53 @@ int main()
             cout << "prezime i ime" << "\t" << "broj telefona" << "\t" << "adresa" << endl;
             for( int i = 0; i < brojOsoba; i++ )
             {
-                cout << prezimeIme[i] << endl;
+                cout << prezimeIme[i] <<"\t"<<brTelefona[i]<<"\t"<<adresa[i]<<endl;
             }
         }
         else if( izbor == 3 )
         {
+            unsigned long long int brtelefona;
+            cout<<"Upisite broj telefona: ";
+            cin>>brtelefona;
+            bool postoji=false;
+            for(int i=0;i<brojOsoba;i++)
+            {
+                if(brtelefona==brTelefona[i])
+                {
+                    cout<<"Broj se nalazi u imeniku"<<endl;
+                    cout << prezimeIme[i] <<"\t"<<brTelefona[i]<<"\t"<<adresa[i]<<endl;
+                    postoji=true;
+                    break;
+                }
+            }
+            if(postoji==false)
+                cout<<" nepostoji u imeniku!"<<endl;
+
         }
         else if( izbor == 4 )
         {
+              string prezimeime;
+            cout<<"Unesi Prezime I ime koje zelite pretraziti ";
+            cin.ignore();
+            getline(cin,prezimeime);
+            cout<<endl<<prezimeime;
+            bool postoji=false;
+            for(int i=0;i<brojOsoba;i++)
+            {
+                if(prezimeime==prezimeIme[brojOsoba])
+                {
+                    cout<<"Osoba se nalazi u imeniku"<<endl;
+                    cout << prezimeIme[i] <<"\t"<<brTelefona[i]<<"\t"<<adresa[i]<<endl;
+                    postoji=true;
+                    break;
+                }
+            }
+            if(postoji==false)
+                cout<<" nepostoji u imeniku!"<<endl;
         }
         else if( izbor == 5 )
         {
+
         }
         else if( izbor == 6 )
         {
